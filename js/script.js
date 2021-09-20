@@ -121,3 +121,11 @@ function showFilteredList(list) {
 // Call functions
 showPage(data, 1);
 addPagination(data);
+
+searchInput.addEventListener('keyup', () => {
+   showFilteredList(data);
+});
+
+searchButton.addEventListener('click', () => {
+   showFilteredList(data);
+});
