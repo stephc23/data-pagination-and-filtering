@@ -15,6 +15,8 @@ const searchHTML =
    </label>
    `
 header.insertAdjacentHTML('beforeend', searchHTML);
+const searchInput = document.querySelector('#search');
+const searchButton = searchInput.nextElementSibling;
 
 /*
 Create the `showPage` function
@@ -82,6 +84,38 @@ function addPagination(list) {
          showPage(list, activePageNumber);
       }
    });
+}
+
+/*
+Create a filtered list
+*/
+function showFilteredList(list) {
+   function createFilteredList(fullList) {
+      const searchValue = searchInput.value.toLowerCase(); 
+      const filteredList = [];
+      for (let i = 0; i < fullList.length; i++) { 
+         const student = fullList[i];
+         const firstName = student.name.first.toLowerCase();
+         const lastName = student.name.last.toLowerCase();
+         if (firstName.includes(searchValue) || lastName.includes(searchValue)) {
+            filteredList.push(student);
+         }
+      }  
+      return filteredList;       
+   }
+
+   const newList = createFilteredList(list);
+   if (newList.length > 0) {
+      showPage(newList, 1);
+      addPagination(newList);
+   } else {
+      const studentList = document.querySelector('ul.student-list');
+      studentList.innerHTML = '';
+      const linkList = document.querySelector('ul.link-list');
+      linkList.innerHTML = '';
+      const noResultsHTML = `<li class="no-results">No results found</li>`;
+      studentList.insertAdjacentHTML('afterbegin', noResultsHTML);
+   }
 }
 
 // Call functions
