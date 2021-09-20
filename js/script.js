@@ -10,7 +10,7 @@ const searchHTML =
       <span>Search by name</span>
       <input id="search" placeholder="Search by name...">
       <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
-   </label>`;
+   </label>`; // HTML was provided in project instructions
 header.insertAdjacentHTML('beforeend', searchHTML);
 const searchInput = document.querySelector('#search');
 const searchButton = searchInput.nextElementSibling;
