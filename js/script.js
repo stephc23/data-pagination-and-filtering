@@ -3,27 +3,25 @@ Treehouse Techdegree:
 FSJS Project 2 - Data Pagination and Filtering
 */
 
-// Add a search bar and select search input and button elements
+// Add a search bar and select its input and button elements
 const header = document.querySelector('header');
 const searchHTML = 
    `<label for="search" class="student-search">
       <span>Search by name</span>
       <input id="search" placeholder="Search by name...">
       <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
-   </label>
-   `
+   </label>`;
 header.insertAdjacentHTML('beforeend', searchHTML);
 const searchInput = document.querySelector('#search');
 const searchButton = searchInput.nextElementSibling;
 
-// The `showPage` function displays a page of nine students by creating and inserting the elements needed
+// The `showPage` function displays a page of nine students by creating and inserting necessary elements
 function showPage(list, page) {
    const itemsPerPage = 9;
    const startIndex = (page * itemsPerPage) - itemsPerPage;  
    const endIndex = page * itemsPerPage;
    const studentList = document.querySelector('ul.student-list');
    studentList.innerHTML = '';
-
    for (let i = 0; i < list.length; i++) {
       if (i >= startIndex && i < endIndex) {
          const student = list[i];
@@ -37,8 +35,7 @@ function showPage(list, page) {
                <div class="joined-details">
                   <span class="date">Joined ${student.registered.date}</span>
                </div>
-            </li>
-            `
+            </li>`;
          studentList.insertAdjacentHTML('beforeend', studentHTML);
       }
    }
@@ -54,8 +51,7 @@ function addPagination(list) {
       const buttonHTML = 
          `<li>
             <button type="button">${i}</button>
-         </li>
-         `
+         </li>`;
       linkList.insertAdjacentHTML('beforeend', buttonHTML);
    }
 
@@ -108,15 +104,12 @@ function showFilteredList(list) {
    }
 }
 
-// Call functions using full list of data
 showPage(data, 1);
 addPagination(data);
 
-// Add event listeners to create, show, and paginate filtered list if search bar is used
 searchInput.addEventListener('keyup', () => {
    showFilteredList(data);
 });
-
 searchButton.addEventListener('click', () => {
    showFilteredList(data);
 });
