@@ -3,9 +3,7 @@ Treehouse Techdegree:
 FSJS Project 2 - Data Pagination and Filtering
 */
 
-/*
-Add a search bar
-*/
+// Add a search bar and select search input and button elements
 const header = document.querySelector('header');
 const searchHTML = 
    `<label for="search" class="student-search">
@@ -18,10 +16,7 @@ header.insertAdjacentHTML('beforeend', searchHTML);
 const searchInput = document.querySelector('#search');
 const searchButton = searchInput.nextElementSibling;
 
-/*
-Create the `showPage` function
-This function will create and insert/append the elements needed to display a "page" of nine students
-*/
+// The `showPage` function displays a page of nine students by creating and inserting the elements needed
 function showPage(list, page) {
    const itemsPerPage = 9;
    const startIndex = (page * itemsPerPage) - itemsPerPage;  
@@ -49,10 +44,7 @@ function showPage(list, page) {
    }
 }
 
-/*
-Create the `addPagination` function
-This function will create and insert/append the elements needed for the pagination buttons
-*/
+// The `addPagination` function creates pagination buttons and shows the active page when its button is clicked
 function addPagination(list) {
    const itemsPerPage = 9;
    const numberOfPages = Math.ceil(list.length / itemsPerPage);
@@ -86,9 +78,7 @@ function addPagination(list) {
    });
 }
 
-/*
-Create a filtered list
-*/
+// The `showFilteredList` function creates a filtered list matching search input and shows and paginates the list
 function showFilteredList(list) {
    function createFilteredList(fullList) {
       const searchValue = searchInput.value.toLowerCase(); 
@@ -118,10 +108,11 @@ function showFilteredList(list) {
    }
 }
 
-// Call functions
+// Call functions using full list of data
 showPage(data, 1);
 addPagination(data);
 
+// Add event listeners to create, show, and paginate filtered list if search bar is used
 searchInput.addEventListener('keyup', () => {
    showFilteredList(data);
 });
